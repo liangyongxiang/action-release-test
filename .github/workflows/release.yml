@@ -1,8 +1,8 @@
 name: Releases
 
 on: 
-  push:
-    tags:
+push:
+  tags:
     - '*'
 
 jobs:
@@ -12,13 +12,16 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.tag }}
     - name: Generate Prerelease Release Notes
       run: |
         mkdir release
         cp README.md ./release
         tar czf release.tar.gz ./release
-    - uses: ncipollo/release-action@v1
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
       with:
-        artifacts: "release.tar.gz"
-        bodyFile: "README.md"
+        name: release.tar.gz
+        pth: release.tar.gz
