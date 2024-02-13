@@ -12,12 +12,12 @@ jobs:
     permissions:
       contents: write
     steps:
+    - uses: actions/checkout@v3
     - name: Generate Prerelease Release Notes
       run: |
         mkdir release
         cp README.md ./release
         tar czf release.tar.gz ./release
-    - uses: actions/checkout@v3
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "release.tar.gz"
