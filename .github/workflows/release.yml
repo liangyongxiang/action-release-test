@@ -1,19 +1,20 @@
 name: Releases
 
 on: 
-push:
-  tags:
+  push:
+    tags:
     - '*'
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ inputs.tag }}
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.tag }}
     - name: Generate Prerelease Release Notes
       run: |
         mkdir release
@@ -23,4 +24,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: release.tar.gz
-        pth: release.tar.gz
+        path: release.tar.gz
