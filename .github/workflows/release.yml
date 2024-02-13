@@ -22,12 +22,6 @@ jobs:
         mkdir release
         cp README.md ./release
         tar czf release.tar.gz ./release
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: release.tar.gz
-        path: release.tar.gz
-
     - name: Upload Release
       uses: softprops/action-gh-release@v1
       with:
