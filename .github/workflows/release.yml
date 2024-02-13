@@ -14,7 +14,9 @@ jobs:
     steps:
     - name: Generate Prerelease Release Notes
       run: |
-        tar czf release.tar.gz ./ --warning=no-file-changed
+        mkdir release
+        cp README.md ./release
+        tar czf release.tar.gz ./release
     - uses: actions/checkout@v3
     - uses: ncipollo/release-action@v1
       with:
