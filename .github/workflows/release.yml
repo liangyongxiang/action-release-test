@@ -1,9 +1,11 @@
 name: Releases
 
-on: 
-  push:
-    tags:
-    - '*'
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        required: true
 
 jobs:
 
