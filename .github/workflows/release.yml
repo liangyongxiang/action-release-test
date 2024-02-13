@@ -12,6 +12,9 @@ jobs:
     permissions:
       contents: write
     steps:
+    - name: Generate Prerelease Release Notes
+      run: |
+        tar czf . release.tar.gz
     - uses: actions/checkout@v3
     - uses: ncipollo/release-action@v1
       with:
